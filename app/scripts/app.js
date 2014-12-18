@@ -15,17 +15,34 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mgcrea.ngStrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/competitionSales', {
+        templateUrl: 'views/competitionSalesVolume.html',
+        controller: 'MainCtrl'
+      })
+      .when('/admin',{
+        templateUrl:'views/about.html',
+        controller:'MainCtrl'
+      })
+      .when('/salesVolumeCompetition', {
+        templateUrl: 'views/salesvolumecompetition.html',
+        controller: 'SalesvolumecompetitionCtrl'
+      })
+      .when('/activityTracker', {
+        templateUrl: 'views/activitytracker.html',
+        controller: 'ActivitytrackerCtrl'
       })
       .otherwise({
         redirectTo: '/'

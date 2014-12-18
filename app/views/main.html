@@ -1,23 +1,100 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+<form name="ratSalesVolumeForm" novalidate >
+  <div class="container-fluid ">
+    <h2>RAT Sales Volume</h2>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="form-group"><label for="">Business Unit</label>
+          <select class="form-control" ng-model="selectedBusinessUnit"
+                  ng-options="bu.unitName for bu in businessunits"></select>
+        </div>
+        <div class="form-group"><label for="">Period</label>
+          <input required name="period" type="month" placeholder="yyyy-MM-dd" required ng-model="period" class="form-control">
+          <span ng-show="ratSalesVolumeForm.period.$error.required">Required! </span>
+        </div>
+        <div class="form-group"><label for="">Country</label>
+          <select class="form-control" ng-change="getBrands(country)" ng-model="country"
+                  ng-options="country.name for country in countries"></select>
+        </div>
+        <div class="form-group"><label for="">Brand</label>
+          <select class="form-control" ng-model="brand"
+                  ng-options="brand.brandName for brand in filteredBrands"></select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group"><label for="">Invoice Sale</label>
+          <input  type="number" name="invoiceSale" required class="form-control" ng-model="invoiceSale"></select>
+          <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.required'>Invoice sale is required</span>
+        </div>
+        <div class="form-group"><label for="">In-Market Sales</label>
+          <input class="form-control" ng-model="inMarketSales"></select>
+        </div>
+        <div class="form-group"><label for="">Monthly Forecast</label>
+          <input class="form-control" ng-model="monthlyForecast"></select>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group"><label for="">Case Price</label>
+          <input class="form-control" ng-model="casePrice"></select>
+        </div>
+        <div class="form-group"><label for="">Roll Price</label>
+          <input class="form-control" ng-model="rollPrice"></select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group"><label for="">Pack Price</label>
+          <input class="form-control" ng-model="packPrice"></select>
+        </div>
+        <div class="form-group"><label for="">Stick Price</label>
+          <input class="form-control" ng-model="stickPrice"></select>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button ng-click="save()" class="btn btn-default" ng-disabled='ratSalesVolumeForm.$invalid'>Save</button>
+        <button class="btn btn-default">cancel</button>
+      </div>
+    </div>
+    <div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Period</th>
+          <th>Country</th>
+          <th>Brand</th>
+          <th>Business Unit</th>
+          <th>Invoice Sales</th>
+          <th>Market Sales</th>
+          <th>Monthly Forecast</th>
+          <th>Case Price</th>
+          <th>Roll Price</th>
+          <th>Pack Price</th>
+          <th>Stick Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="sale in salesVolume">
+          <td>{{sale.period | date:"MMMM yyyy"}}</td>
+          <td>{{sale.country.name}}</td>
+          <td>{{sale.brand.brandName}}</td>
+          <td>{{sale.businessUnit.unitName}}</td>
+          <td>{{sale.invoiceSale}}</td>
+          <td>{{sale.inMarketSale}}</td>
+          <td>{{sale.monthlyForcast}}</td>
+          <td>{{sale.casePrice}}</td>
+          <td>{{sale.rollPrice}}</td>
+          <td>{{sale.packPrice}}</td>
+          <td>{{sale.stickPrice}}</td>
+          <td>Edit</td>
+          <td>Delete</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>
