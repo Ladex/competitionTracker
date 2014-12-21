@@ -27,10 +27,10 @@
           <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.required'>Invoice sale is required</span>
         </div>
         <div class="form-group"><label for="">In-Market Sales</label>
-          <input class="form-control" ng-model="inMarketSales"></select>
+          <input class="form-control" type="number" ng-model="inMarketSales"></select>
         </div>
         <div class="form-group"><label for="">Monthly Forecast</label>
-          <input class="form-control" ng-model="monthlyForecast"></select>
+          <input class="form-control" type="number" ng-model="monthlyForecast"></select>
         </div>
       </div>
     </div>
@@ -38,23 +38,23 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group"><label for="">Case Price</label>
-          <input class="form-control" ng-model="casePrice"></select>
+          <input class="form-control" type="number" ng-model="casePrice"></select>
         </div>
         <div class="form-group"><label for="">Roll Price</label>
-          <input class="form-control" ng-model="rollPrice"></select>
+          <input class="form-control" type="number" ng-model="rollPrice"></select>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group"><label for="">Pack Price</label>
-          <input class="form-control" ng-model="packPrice"></select>
+          <input class="form-control" type="number" ng-model="packPrice"></select>
         </div>
         <div class="form-group"><label for="">Stick Price</label>
-          <input class="form-control" ng-model="stickPrice"></select>
+          <input class="form-control" type="number" ng-model="stickPrice"></select>
         </div>
       </div>
     </div>
     <hr/>
-    <div class="container-fluid">
+    <div class="well container-fluid">
       <div class="pull-right">
         <button ng-click="save()" class="btn btn-default" ng-disabled='ratSalesVolumeForm.$invalid'>Save</button>
         <button class="btn btn-default">cancel</button>
@@ -77,21 +77,40 @@
           <th>Stick Price</th>
         </tr>
         </thead>
-        <tbody>
-        <tr ng-repeat="sale in salesVolume">
+        <tbody ng-repeat="sale in salesVolume">
+        <tr ng-if="sale != activeSale">
           <td>{{sale.period | date:"MMMM yyyy"}}</td>
           <td>{{sale.country.name}}</td>
           <td>{{sale.brand.brandName}}</td>
           <td>{{sale.businessUnit.unitName}}</td>
           <td>{{sale.invoiceSale}}</td>
           <td>{{sale.inMarketSale}}</td>
-          <td>{{sale.monthlyForcast}}</td>
+          <td>{{sale.monthlyForecast}}</td>
           <td>{{sale.casePrice}}</td>
           <td>{{sale.rollPrice}}</td>
           <td>{{sale.packPrice}}</td>
           <td>{{sale.stickPrice}}</td>
-          <td>Edit</td>
-          <td>Delete</td>
+          <td><a ng-click="edit(sale)">Edit</a></td>
+          <td><a ng-click="delete(sale)">Delete</a></td>
+        </tr>
+        <tr ng-if="sale === activeSale" >
+          <td><input type="month" ng-model="sale.period"/></td>
+          <td> <select class="form-control" ng-change="getBrands(sale.country)" ng-model="sale.country"
+                       ng-options="country.name for country in countries"></select></td>
+          <td> <select class="form-control" ng-model="sale.brand"
+                       ng-options="brand.brandName for brand in filteredBrands"></select></td>
+
+          <td><select class="form-control" ng-model="sale.businessUnit"
+                       ng-options="bu.unitName for bu in businessunits"></select></td>
+          <td><input type="text" ng-model="sale.invoiceSale"/></td>
+          <td><input type="text" ng-model="sale.inMarketSale"/></td>
+          <td><input type="text" ng-model="sale.monthlyForecast"/></td>
+          <td><input type="text" ng-model="sale.casePrice"/></td>
+          <td><input type="text" ng-model="sale.rollPrice"/></td>
+          <td><input type="text" ng-model="sale.packPrice"/></td>
+          <td><input type="text" ng-model="sale.stickPrice"/></td>
+          <td><a ng-click="edit(sale)">Update</a></td>
+          <td><a ng-click="cancel(sale)">Cancel</a></td>
         </tr>
         </tbody>
       </table>

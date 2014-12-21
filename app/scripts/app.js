@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'mgcrea.ngStrap'
   ])
-  .config(function ($routeProvider,$locationProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
@@ -33,9 +33,9 @@ angular
         templateUrl: 'views/competitionSalesVolume.html',
         controller: 'MainCtrl'
       })
-      .when('/admin',{
-        templateUrl:'views/about.html',
-        controller:'MainCtrl'
+      .when('/admin', {
+        templateUrl: 'views/about.html',
+        controller: 'MainCtrl'
       })
       .when('/salesVolumeCompetition', {
         templateUrl: 'views/salesvolumecompetition.html',

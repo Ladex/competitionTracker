@@ -51,10 +51,13 @@ describe('Controller: MainController', function () {
   it('should save the sales volume when save is called',function(){
     scope.save();
     expect(scope.salesVolume.length).toBe(1);
+    expect(scope.period).toBe('');
+    expect(scope.invoiceSale).toBe('');
+    expect(scope.inMarketSales).toBe('');
+    expect(scope.monthlyForecast).toBe('');
+    expect(scope.rollPrice).toBe('');
+    expect(scope.casePrice).toBe('');
+    expect(scope.packPrice).toBe('');
+    expect(scope.stickPrice).toBe('');
   });
-
-  it('should save and form should reset',function(){
-
-  });
-
 });
