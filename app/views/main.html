@@ -86,7 +86,7 @@
           <td>{{sale.invoiceSale}}</td>
           <td>{{sale.inMarketSale}}</td>
           <td>{{sale.monthlyForecast}}</td>
-          <td>{{sale.casePrice}}</td>
+          <td>{{sale.casePrice | currency:"£"}}</td>
           <td>{{sale.rollPrice}}</td>
           <td>{{sale.packPrice}}</td>
           <td>{{sale.stickPrice}}</td>
@@ -94,7 +94,7 @@
           <td><a ng-click="delete(sale)">Delete</a></td>
         </tr>
         <tr ng-if="sale === activeSale" >
-          <td><input type="month" ng-model="sale.period"/></td>
+          <td><input class="form-control" type="month" ng-model="sale.period"/></td>
           <td> <select class="form-control" ng-change="getBrands(sale.country)" ng-model="sale.country"
                        ng-options="country.name for country in countries"></select></td>
           <td> <select class="form-control" ng-model="sale.brand"
@@ -102,13 +102,13 @@
 
           <td><select class="form-control" ng-model="sale.businessUnit"
                        ng-options="bu.unitName for bu in businessunits"></select></td>
-          <td><input type="text" ng-model="sale.invoiceSale"/></td>
-          <td><input type="text" ng-model="sale.inMarketSale"/></td>
-          <td><input type="text" ng-model="sale.monthlyForecast"/></td>
-          <td><input type="text" ng-model="sale.casePrice"/></td>
-          <td><input type="text" ng-model="sale.rollPrice"/></td>
-          <td><input type="text" ng-model="sale.packPrice"/></td>
-          <td><input type="text" ng-model="sale.stickPrice"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.invoiceSale"/></td>
+          <td><input  class="form-control" type="text" ng-model="sale.inMarketSale"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.monthlyForecast"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.casePrice"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.rollPrice"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.packPrice"/></td>
+          <td><input class="form-control" type="text" ng-model="sale.stickPrice"/></td>
           <td><a ng-click="edit(sale)">Update</a></td>
           <td><a ng-click="cancel(sale)">Cancel</a></td>
         </tr>
