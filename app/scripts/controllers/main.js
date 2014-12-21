@@ -10,6 +10,11 @@
 angular.module('competitionTrackerApp')
   .controller('MainController', function ($scope) {
 
+    $scope.maxSize = 5;
+    $scope.itemsPerPage = 10;
+    $scope.currentPage = 1;
+
+
     function clearFields() {
       $scope.period = '';
       $scope.invoiceSale = '';
@@ -62,7 +67,9 @@ angular.module('competitionTrackerApp')
       };
 
       $scope.salesVolume.push(salesVolume);
-      clearFields();
+      $scope.pageChanged();
+      //clearFields();
+      $scope.totalItems  = $scope.salesVolume.length;
     };
 
     $scope.edit = function (sale) {
@@ -76,5 +83,12 @@ angular.module('competitionTrackerApp')
 
     $scope.cancel = function () {
       $scope.activeSale = null;
+    };
+
+    $scope.pageChanged = function(){
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
+        end = begin + $scope.itemsPerPage;
+
+      $scope.filteredSales = $scope.salesVolume.slice(begin, end);
     };
   });

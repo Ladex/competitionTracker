@@ -77,7 +77,7 @@
           <th>Stick Price</th>
         </tr>
         </thead>
-        <tbody ng-repeat="sale in salesVolume">
+        <tbody ng-repeat="sale in filteredSales">
         <tr ng-if="sale != activeSale">
           <td>{{sale.period | date:"MMMM yyyy"}}</td>
           <td>{{sale.country.name}}</td>
@@ -114,6 +114,7 @@
         </tr>
         </tbody>
       </table>
+      <pagination items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
     </div>
   </div>
 </form>

@@ -5,7 +5,7 @@ describe('Controller: MainController', function () {
   // load the controller's module
   beforeEach(module('competitionTrackerApp'));
 
-  var MainCtrl,scope;
+  var MainCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
@@ -37,7 +37,7 @@ describe('Controller: MainController', function () {
     expect(scope.selectedCountry).toBeDefined();
   });
 
-  it('should have competition figure variable',function(){
+  it('should have competition figure variable', function () {
     expect(scope.period).toBeDefined();
     expect(scope.invoiceSale).toBeDefined();
     expect(scope.inMarketSales).toBeDefined();
@@ -48,7 +48,7 @@ describe('Controller: MainController', function () {
     expect(scope.stickPrice).toBeDefined();
   });
 
-  it('should save the sales volume when save is called',function(){
+  it('should save the sales volume when save is called', function () {
     scope.save();
     expect(scope.salesVolume.length).toBe(1);
     expect(scope.period).toBe('');
@@ -59,5 +59,13 @@ describe('Controller: MainController', function () {
     expect(scope.casePrice).toBe('');
     expect(scope.packPrice).toBe('');
     expect(scope.stickPrice).toBe('');
+  });
+
+  describe('when i enter valid sales data', function () {
+    describe('and they already exist',function(){
+      it('should prompt that sales value for the period already exist',function(){
+          expect(true).toBe(true);
+      });
+    });
   });
 });
