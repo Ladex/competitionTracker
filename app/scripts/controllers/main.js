@@ -66,10 +66,9 @@ angular.module('competitionTrackerApp')
         stickPrice: $scope.stickPrice
       };
 
-      $scope.salesVolume.push(salesVolume);
+      $scope.totalItems =  $scope.salesVolume.unshift(salesVolume);
       $scope.pageChanged();
       //clearFields();
-      $scope.totalItems  = $scope.salesVolume.length;
     };
 
     $scope.edit = function (sale) {
