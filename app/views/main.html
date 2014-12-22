@@ -23,14 +23,16 @@
       </div>
       <div class="col-md-6">
         <div class="form-group"><label for="">Invoice Sale</label>
-          <input  type="number" name="invoiceSale" required class="form-control" ng-model="invoiceSale"></select>
-          <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.required'>Invoice sale is required</span>
+          <input  type="text" name="invoiceSale" required class="form-control" ng-model="invoiceSale" integer/>
+          <!--<span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.required'>Invoice sale is required</span>-->
+          <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.integer'>Invoice sale should be a whole number</span>
         </div>
         <div class="form-group"><label for="">In-Market Sales</label>
-          <input class="form-control" type="number" ng-model="inMarketSales"></select>
+          <input class="form-control" name="inMarketSale" type="text" ng-model="inMarketSales" integer/>
+          <span class='help-block' ng-show='ratSalesVolumeForm.inMarketSale.$error.integer'>In Market sale should be a whole number</span>
         </div>
         <div class="form-group"><label for="">Monthly Forecast</label>
-          <input class="form-control" type="number" ng-model="monthlyForecast"></select>
+          <input class="form-control" type="number" ng-model="monthlyForecast"></input>
         </div>
       </div>
     </div>
@@ -77,8 +79,8 @@
           <th>Stick Price</th>
         </tr>
         </thead>
-        <tbody ng-repeat="sale in filteredSales">
-        <tr ng-if="sale != activeSale">
+        <tbody sales-row ng-repeat="sale in filteredSales">
+        <tr ng-if="sale !== activeSale">
           <td>{{sale.period | date:"MMMM yyyy"}}</td>
           <td>{{sale.country.name}}</td>
           <td>{{sale.brand.brandName}}</td>
@@ -114,7 +116,7 @@
         </tr>
         </tbody>
       </table>
-      <pagination items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+      <pagination class="pull-right" items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
     </div>
   </div>
 </form>
