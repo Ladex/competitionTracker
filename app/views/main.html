@@ -4,28 +4,31 @@
     <hr/>
     <div class="row">
       <div class="col-md-6 ">
+
         <div class="form-group"><label for="">Business Unit</label>
           <select class="form-control" ng-model="selectedBusinessUnit"
                   ng-options="bu.unitName for bu in businessunits"></select>
         </div>
         <div class="form-group"><label for="">Period</label>
           <input required name="period" type="month" placeholder="yyyy-MM-dd" required ng-model="period" class="form-control">
-          <span ng-show="ratSalesVolumeForm.period.$error.required">Required! </span>
+          <span ng-show="ratSalesVolumeForm.period.$error.required">Period is required</span>
         </div>
         <div class="form-group"><label for="">Country</label>
-          <select class="form-control" ng-change="getBrands(country)" ng-model="country"
-                  ng-options="country.name for country in countries"></select>
+          <select name="country" class="form-control" ng-change="getBrands(country)" ng-model="country"
+                  ng-options="country.name for country in countries" required></select>
+          <span ng-show="ratSalesVolumeForm.country.$error.required">Country is required.</span>
         </div>
         <div class="form-group"><label for="">Brand</label>
-          <select class="form-control" ng-model="brand"
+          <select name="brand" required class="form-control" ng-model="brand"
                   ng-options="brand.brandName for brand in filteredBrands"></select>
+          <span ng-show="ratSalesVolumeForm.brand.$error.required">Brand is required.</span>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group"><label for="">Invoice Sale</label>
           <input  type="text" name="invoiceSale" required class="form-control" ng-model="invoiceSale" integer/>
           <!--<span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.required'>Invoice sale is required</span>-->
-          <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.integer'>Invoice sale should be a whole number</span>
+          <span class='help-block' ng-show='ratSalesVolumeForm.invoiceSale.$error.integer'>Invoice sale should be a number</span>
         </div>
         <div class="form-group"><label for="">In-Market Sales</label>
           <input class="form-control" name="inMarketSale" type="text" ng-model="inMarketSales" integer/>
@@ -40,18 +43,19 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group"><label for="">Case Price</label>
-          <input class="form-control" type="number" ng-model="casePrice"></select>
+          <input class="form-control" type="number" ng-model="casePrice"/>
         </div>
         <div class="form-group"><label for="">Roll Price</label>
-          <input class="form-control" type="number" ng-model="rollPrice"></select>
+          <input name="rollPrice" class="form-control" type="text" integer ng-model="rollPrice"/>
+          <span ng-show="ratSalesVolumeForm.rollPrice.$error.integer">Roll price should be a number</span>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group"><label for="">Pack Price</label>
-          <input class="form-control" type="number" ng-model="packPrice"></select>
+          <input class="form-control" type="number" ng-model="packPrice"/>
         </div>
         <div class="form-group"><label for="">Stick Price</label>
-          <input class="form-control" type="number" ng-model="stickPrice"></select>
+          <input class="form-control" type="number" ng-model="stickPrice"/>
         </div>
       </div>
     </div>
@@ -89,7 +93,7 @@
           <td>{{sale.inMarketSale}}</td>
           <td>{{sale.monthlyForecast}}</td>
           <td>{{sale.casePrice | currency:"£"}}</td>
-          <td>{{sale.rollPrice}}</td>
+          <td>{{sale.rollPrice || 0}}</td>
           <td>{{sale.packPrice}}</td>
           <td>{{sale.stickPrice}}</td>
           <td><a ng-click="edit(sale)">Edit</a></td>
